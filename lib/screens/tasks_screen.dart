@@ -2,9 +2,21 @@ import 'package:flutter/material.dart';
 import 'package:todoey/widgets/tasks_list.dart';
 // import 'package:todoey/widgets/tasks_tile.dart';
 import 'AddTask.dart';
+import 'package:todoey/models/tasks.dart';
 
-class TaskScreen extends StatelessWidget {
+class TaskScreen extends StatefulWidget {
   const TaskScreen({super.key});
+
+  @override
+  State<TaskScreen> createState() => _TaskScreenState();
+}
+
+class _TaskScreenState extends State<TaskScreen> {
+  List<Task> taskList = [
+    Task(name: "Buy Milk"),
+    Task(name: "Buy Butter"),
+    Task(name: "Buy Water"),
+  ];
 
   @override
   Widget build(BuildContext context) {
@@ -15,13 +27,14 @@ class TaskScreen extends StatelessWidget {
           showModalBottomSheet(
             context: context,
             builder:
-                (context) => SingleChildScrollView(
-                  child: Container(
-                    padding: EdgeInsets.only(
-                      bottom: MediaQuery.of(context).viewInsets.bottom,
-                    ), // Modifs apportées pour que le menu popup toujours au dessus du clavier peu importe la taille de l'écran (media query)
-                    child: AddTaskScreen(),
-                  ),
+                (context) => AddTaskScreen(
+                  AddTaskCallback: (newTaskTitle) {
+                    print(newTaskTitle);
+                    setState(() {
+                      taskList.add(Task(name: newTaskTitle));
+                    });
+                    Navigator.pop(context);
+                  },
                 ),
           );
         },
@@ -63,7 +76,7 @@ class TaskScreen extends StatelessWidget {
                   ),
                 ),
                 Text(
-                  "12 Tasks",
+                  '${taskList.length} Tasks',
                   style: TextStyle(color: Colors.white, fontSize: 18.0),
                 ),
               ],
@@ -80,7 +93,7 @@ class TaskScreen extends StatelessWidget {
                   topRight: Radius.circular(20),
                 ),
               ),
-              child: TaskList(),
+              child: TaskList(tasks: taskList),
             ),
           ),
         ],

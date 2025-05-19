@@ -1,11 +1,18 @@
 // ignore: file_names
+// ignore_for_file: non_constant_identifier_names
+
 import 'package:flutter/material.dart';
+// import 'package:todoey/widgets/tasks_list.dart';
 
 class AddTaskScreen extends StatelessWidget {
-  const AddTaskScreen({super.key});
+  final Function AddTaskCallback;
+  // ignore: prefer_const_constructors_in_immutables
+  AddTaskScreen({super.key, required this.AddTaskCallback});
 
   @override
   Widget build(BuildContext context) {
+    String NewTaskTitle = '';
+
     return Container(
       color: Color(0xff757575),
       child: Container(
@@ -33,12 +40,17 @@ class AddTaskScreen extends StatelessWidget {
                 textAlign: TextAlign.center,
                 cursorColor: Colors.lightBlue,
                 decoration: InputDecoration(focusColor: Colors.lightBlue),
+                onChanged: (newText) {
+                  NewTaskTitle = newText;
+                },
               ),
 
               SizedBox(height: 25),
 
               TextButton(
-                onPressed: () {},
+                onPressed: () {
+                  AddTaskCallback(NewTaskTitle);
+                },
                 child: Container(
                   decoration: BoxDecoration(color: Colors.lightBlueAccent),
                   child: Center(
