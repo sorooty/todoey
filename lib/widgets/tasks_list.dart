@@ -16,8 +16,8 @@ class _TaskListState extends State<TaskList> {
         return ListView.builder(
           itemBuilder: (context, index) {
             return TaskTile(
-              isChecked: Provider.of<TaskData>(context).taskList[index].isDone,
-              taskTitle: Provider.of<TaskData>(context).taskList[index].name,
+              isChecked: Provider.of<TaskData>(context).tasks[index].isDone,
+              taskTitle: Provider.of<TaskData>(context).tasks[index].name,
               checkBoxCallback: (bool? checkboxState) {
                 // setState(() {
                 //   Provider.of<TaskData>(context).taskList[index].toggleDone();
