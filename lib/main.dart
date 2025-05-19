@@ -14,7 +14,11 @@ class MainApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(
       create: (context) => TaskData(),
-      child: MaterialApp(title: "Todoey", home: Scaffold(body: TaskScreen())),
+      child: MaterialApp(
+        debugShowCheckedModeBanner: false,
+        title: "Todoey",
+        home: Scaffold(body: TaskScreen()),
+      ),
     );
   }
 }

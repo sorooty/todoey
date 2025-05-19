@@ -1,26 +1,27 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:todoey/widgets/tasks_list.dart';
 import 'AddTask.dart';
 import 'package:provider/provider.dart';
 import 'package:todoey/models/task_data.dart';
 
 class TaskScreen extends StatelessWidget {
+  const TaskScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.lightBlueAccent,
+      backgroundColor: Colors.amber.shade900,
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           showModalBottomSheet(
             context: context,
-            builder:
-                (context) => AddTaskScreen(),
+            builder: (context) => AddTaskScreen(),
           );
         },
-        backgroundColor: Colors.lightBlueAccent,
-        splashColor: Colors.lightBlueAccent,
-        hoverColor: Colors.lightBlue,
+        backgroundColor: Colors.amber.shade900,
+        splashColor: Colors.amber.shade900,
+        hoverColor: Colors.orangeAccent,
         child: Icon(Icons.add, color: Colors.white, weight: 50),
       ),
       body: Column(
@@ -42,22 +43,37 @@ class TaskScreen extends StatelessWidget {
                   radius: 30.0,
                   child: Icon(
                     Icons.list,
-                    color: Colors.lightBlueAccent,
+                    color: const Color(0xFFFF6F00),
                     size: 30.0,
                   ),
                 ),
                 SizedBox(height: 10),
                 Text(
                   "Todoey",
-                  style: TextStyle(
+                  style: GoogleFonts.poppins(
                     color: Colors.white,
                     fontWeight: FontWeight.w700,
                     fontSize: 50.0,
                   ),
                 ),
                 Text(
-                  '${Provider.of<TaskData>(context).taskCount} Tasks',
-                  style: TextStyle(color: Colors.white, fontSize: 18.0),
+                  "Made by Sensey",
+                  style: GoogleFonts.pacifico(
+                    color: Colors.white,
+                    fontWeight: FontWeight.w500,
+                    // decoration: TextDecoration.underline,
+                  ),
+                ),
+                SizedBox(height: 10),
+                Divider(color: Colors.white, thickness: 2),
+                SizedBox(height: 20),
+                Text(
+                  '${Provider.of<TaskData>(context).taskCount} Tasks remaining',
+                  style: GoogleFonts.poppins(
+                    color: Colors.white,
+                    fontSize: 25.0,
+                    fontWeight: FontWeight.w600,
+                  ),
                 ),
               ],
             ),

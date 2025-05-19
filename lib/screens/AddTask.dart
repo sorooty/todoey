@@ -1,14 +1,13 @@
 // ignore: file_names
 // ignore_for_file: non_constant_identifier_names
-
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'package:todoey/models/task_data.dart';
-import 'package:todoey/models/tasks.dart';
-
-// import 'package:todoey/widgets/tasks_list.dart';
 
 class AddTaskScreen extends StatelessWidget {
+  const AddTaskScreen({super.key});
+
   @override
   Widget build(BuildContext context) {
     String NewTaskTitle = '';
@@ -31,15 +30,22 @@ class AddTaskScreen extends StatelessWidget {
             children: [
               Text(
                 "Add Task",
-                style: TextStyle(fontSize: 30, color: Colors.lightBlueAccent),
+                style: GoogleFonts.poppins(
+                  fontSize: 30,
+                  color: Colors.amber.shade900,
+                ),
               ),
               SizedBox(height: 40),
 
               TextField(
                 autofocus: true,
                 textAlign: TextAlign.center,
-                cursorColor: Colors.lightBlue,
-                decoration: InputDecoration(focusColor: Colors.lightBlue),
+                cursorColor: Colors.orangeAccent,
+                decoration: InputDecoration(
+                  focusColor: Colors.orangeAccent,
+                  labelText: "Type your desird task..",
+                  // counterStyle: 
+                ),
                 onChanged: (newText) {
                   NewTaskTitle = newText;
                   // print(newText);
@@ -57,11 +63,14 @@ class AddTaskScreen extends StatelessWidget {
                   Navigator.pop(context);
                 },
                 child: Container(
-                  decoration: BoxDecoration(color: Colors.lightBlueAccent),
+                  decoration: BoxDecoration(color: Colors.amber.shade900),
                   child: Center(
                     child: Text(
                       "Add",
-                      style: TextStyle(fontSize: 25, color: Colors.white),
+                      style: GoogleFonts.poppins(
+                        fontSize: 25,
+                        color: Colors.white,
+                      ),
                     ),
                   ),
                 ),

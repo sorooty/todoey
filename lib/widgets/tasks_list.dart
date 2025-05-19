@@ -19,6 +19,9 @@ class TaskList extends StatelessWidget {
               checkBoxCallback: (bool? checkboxState) {
                 taskData.updateTask(taskData.tasks[index]);
               },
+              longPressCallback: () {
+                taskData.deleteTask(task);
+              },
             );
           },
           itemCount: taskData.taskCount,
@@ -27,25 +30,3 @@ class TaskList extends StatelessWidget {
     );
   }
 }
-
-// class _TaskListState extends State<TaskList> {
-//   @override
-//   Widget build(BuildContext context) {
-//     return Consumer<TaskData>(
-//       builder: (context, taskData, child) {
-//         return ListView.builder(
-//           itemBuilder: (context, index) {
-//             return TaskTile(
-//               isChecked: Provider.of<TaskData>(context).tasks[index].isDone,
-//               taskTitle: Provider.of<TaskData>(context).tasks[index].name,
-//               checkBoxCallback: (bool? checkboxState) {
-//                 taskData.updateTask(taskData.tasks[index]);
-//               },
-//             );
-//           },
-//           itemCount: Provider.of<TaskData>(context).taskCount,
-//         );
-//       },
-//     );
-//   }
-// }
