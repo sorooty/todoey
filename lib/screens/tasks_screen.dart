@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:todoey/widgets/tasks_list.dart';
-import 'package:todoey/widgets/tasks_tile.dart';
+// import 'package:todoey/widgets/tasks_tile.dart';
+import 'AddTask.dart';
 
 class TaskScreen extends StatelessWidget {
   const TaskScreen({super.key});
@@ -10,7 +11,20 @@ class TaskScreen extends StatelessWidget {
     return Scaffold(
       backgroundColor: Colors.lightBlueAccent,
       floatingActionButton: FloatingActionButton(
-        onPressed: () {},
+        onPressed: () {
+          showModalBottomSheet(
+            context: context,
+            builder:
+                (context) => SingleChildScrollView(
+                  child: Container(
+                    padding: EdgeInsets.only(
+                      bottom: MediaQuery.of(context).viewInsets.bottom,
+                    ), // Modifs apportées pour que le menu popup toujours au dessus du clavier peu importe la taille de l'écran (media query)
+                    child: AddTaskScreen(),
+                  ),
+                ),
+          );
+        },
         backgroundColor: Colors.lightBlueAccent,
         splashColor: Colors.lightBlueAccent,
         hoverColor: Colors.lightBlue,
